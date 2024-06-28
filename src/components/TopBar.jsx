@@ -1,10 +1,17 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import { Box, IconButton, Stack, Toolbar } from "@mui/material";
+import { Box, IconButton, Stack, Toolbar, useTheme } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -65,6 +72,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 export default function TopBar({ open, handleDrawerOpen }) {
+  const theme = useTheme();
   return (
     <AppBar
       position="fixed"
@@ -96,17 +104,26 @@ export default function TopBar({ open, handleDrawerOpen }) {
         </Search>
         <Box flexGrow={1} />
         <Stack direction={"row"}>
-          <IconButton color="inherit" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
+          {theme.palette.mode === "light" ? (
+            <IconButton color="inherit">
+              <LightModeOutlinedIcon />
+            </IconButton>
+          ) : (
+            <IconButton color="inherit">
+              <DarkModeOutlinedIcon />
+            </IconButton>
+          )}
+
+          <IconButton color="inherit">
+            <NotificationsOutlinedIcon />
           </IconButton>
-          <IconButton color="inherit" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
+
+          <IconButton color="inherit">
+            <SettingsOutlinedIcon />
           </IconButton>
-          <IconButton color="inherit" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="add to shopping cart">
-            <AddShoppingCartIcon />
+
+          <IconButton color="inherit">
+            <Person2OutlinedIcon />
           </IconButton>
         </Stack>
       </Toolbar>
