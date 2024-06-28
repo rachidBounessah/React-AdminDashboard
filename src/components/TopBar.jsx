@@ -71,7 +71,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-export default function TopBar({ open, handleDrawerOpen }) {
+export default function TopBar({ open, handleDrawerOpen, setMode }) {
   const theme = useTheme();
   return (
     <AppBar
@@ -106,11 +106,31 @@ export default function TopBar({ open, handleDrawerOpen }) {
         <Stack direction={"row"}>
           {theme.palette.mode === "light" ? (
             <IconButton color="inherit">
-              <LightModeOutlinedIcon />
+              <LightModeOutlinedIcon
+                onClick={() => {
+                  localStorage.setItem(
+                    "currentMode",
+                    theme.palette.mode === "light" ? "dark" : "light"
+                  );
+                  setMode((prevMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                  );
+                }}
+              />
             </IconButton>
           ) : (
             <IconButton color="inherit">
-              <DarkModeOutlinedIcon />
+              <DarkModeOutlinedIcon
+                onClick={() => {
+                  localStorage.setItem(
+                    "currentMode",
+                    theme.palette.mode === "light" ? "dark" : "light"
+                  );
+                  setMode((prevMode) =>
+                    prevMode === "light" ? "dark" : "light"
+                  );
+                }}
+              />
             </IconButton>
           )}
 
