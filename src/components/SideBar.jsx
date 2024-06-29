@@ -12,6 +12,20 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { styled, useTheme } from "@mui/material/styles";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import LiveHelpOutlinedIcon from "@mui/icons-material/LiveHelpOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import Avatar from "@mui/material/Avatar";
+import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -61,7 +75,74 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const Array1 = [
+  {
+    text: "Dashboard",
+    icon: <HomeOutlinedIcon />,
+    path: "/",
+  },
+  {
+    text: "Manage Team",
+    icon: <ContactsOutlinedIcon />,
+    path: "/team",
+  },
+  {
+    text: "Contacts Information",
+    icon: <GroupOutlinedIcon />,
+    path: "/contacts",
+  },
+  {
+    text: "Invoices Balances",
+    icon: <ReceiptOutlinedIcon />,
+    path: "/invoices",
+  },
+];
+
+const Array2 = [
+  {
+    text: "Profil Form",
+    icon: <PersonOutlineOutlinedIcon />,
+    path: "/form",
+  },
+
+  {
+    text: "Calendar",
+    icon: <CalendarTodayOutlinedIcon />,
+    path: "/calendar",
+  },
+
+  {
+    text: "FAQ Page",
+    icon: <LiveHelpOutlinedIcon />,
+    path: "/faq",
+  },
+];
+const Array3 = [
+  {
+    text: "Bar Chart",
+    icon: <BarChartOutlinedIcon />,
+    path: "/bar",
+  },
+
+  {
+    text: "Pie Chart",
+    icon: <PieChartOutlineOutlinedIcon />,
+    path: "/pie",
+  },
+
+  {
+    text: "Line Chart",
+    icon: <TimelineOutlinedIcon />,
+    path: "/line",
+  },
+  {
+    text: "Geography Chart",
+    icon: <MapOutlinedIcon />,
+    path: "/geography",
+  },
+];
 export default function SideBar({ open, handleDrawerClose }) {
+  const navigate = useNavigate();
   const theme = useTheme();
 
   return (
@@ -76,14 +157,49 @@ export default function SideBar({ open, handleDrawerClose }) {
         </IconButton>
       </DrawerHeader>
       <Divider />
+      <Avatar
+        sx={{
+          mx: "auto",
+          height: open ? 88 : 35,
+          width: open ? 88 : 35,
+          my: 1,
+          border: "2px solid grey",
+          transition: "0.25s",
+        }}
+        alt="Remy Sharp"
+        src="https://i.pinimg.com/236x/7e/71/c6/7e71c61368ce63d62f1baf047618853c.jpg"
+      />
+
+      <Typography
+        align="center"
+        sx={{ fontSize: open ? 17 : 0, transition: "0.25s" }}
+      >
+        rachid
+      </Typography>
+      <Typography
+        align="center"
+        sx={{
+          fontSize: open ? 17 : 0,
+          transition: "0.25s",
+          color: theme.palette.info.main,
+        }}
+      >
+        Admin
+      </Typography>
+
+      <Divider />
+
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {Array1.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+              }}
+              onClick={() => {
+                navigate(item.path);
               }}
             >
               <ListItemIcon
@@ -93,22 +209,29 @@ export default function SideBar({ open, handleDrawerClose }) {
                   justifyContent: "center",
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.text}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {Array2.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
             <ListItemButton
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+              }}
+              onClick={() => {
+                navigate(item.path);
               }}
             >
               <ListItemIcon
@@ -118,9 +241,44 @@ export default function SideBar({ open, handleDrawerClose }) {
                   justifyContent: "center",
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText
+                primary={item.text}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
+      <Divider />
+      <List>
+        {Array3.map((item) => (
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+              onClick={() => {
+                navigate(item.path);
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.text}
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
