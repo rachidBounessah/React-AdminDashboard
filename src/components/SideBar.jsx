@@ -9,8 +9,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { styled, useTheme } from "@mui/material/styles";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -25,7 +23,9 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import Avatar from "@mui/material/Avatar";
 import { Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { grey } from "@mui/material/colors";
 
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -144,6 +144,7 @@ const Array3 = [
 export default function SideBar({ open, handleDrawerClose }) {
   const navigate = useNavigate();
   const theme = useTheme();
+  const location = useLocation();
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -197,6 +198,12 @@ export default function SideBar({ open, handleDrawerClose }) {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+                bgcolor:
+                  item.path === location.pathname
+                    ? theme.palette.mode === "dark"
+                      ? grey[800]
+                      : grey[100]
+                    : null,
               }}
               onClick={() => {
                 navigate(item.path);
@@ -229,6 +236,12 @@ export default function SideBar({ open, handleDrawerClose }) {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+                bgcolor:
+                  item.path === location.pathname
+                    ? theme.palette.mode === "dark"
+                      ? grey[800]
+                      : grey[100]
+                    : null,
               }}
               onClick={() => {
                 navigate(item.path);
@@ -261,6 +274,12 @@ export default function SideBar({ open, handleDrawerClose }) {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
+                bgcolor:
+                  item.path === location.pathname
+                    ? theme.palette.mode === "dark"
+                      ? grey[800]
+                      : grey[100]
+                    : null,
               }}
               onClick={() => {
                 navigate(item.path);

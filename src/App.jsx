@@ -11,6 +11,7 @@ import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
 import { getDesignTokens } from "./theme";
 import { Typography } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 export default function MiniDrawer() {
   const [mode, setMode] = React.useState(
@@ -29,7 +30,14 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const DrawerHeader = styled("div")(({ theme }) => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  }));
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -41,9 +49,8 @@ export default function MiniDrawer() {
         />
         <SideBar open={open} handleDrawerClose={handleDrawerClose} />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Typography mt={5} paragraph>
-            Rachid Bounessah
-          </Typography>
+          <DrawerHeader />
+          <Outlet />
         </Box>
       </Box>
     </ThemeProvider>
