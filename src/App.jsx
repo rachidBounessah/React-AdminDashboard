@@ -10,7 +10,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
 import { getDesignTokens } from "./theme";
-import { Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
 export default function MiniDrawer() {
