@@ -110,7 +110,7 @@ export default function Team() {
   return (
     <Box
       sx={{
-        height: 300,
+        height: 600,
         width: "98%",
         mx: "auto",
       }}
